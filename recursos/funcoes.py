@@ -3,7 +3,7 @@ import json
 
 
 def escreverDados(nome, pontos, data):
-    # Lendo os dados existentes
+    
     try:
         banco = open("base.atitus", "r")
         dados = banco.read()
@@ -15,7 +15,7 @@ def escreverDados(nome, pontos, data):
         try:
             dadosDict = json.loads(dados)
         except json.JSONDecodeError:
-            dadosDict = {} # Se o arquivo estiver corrompido, reseta para não travar
+            dadosDict = {} 
     else:
         dadosDict = {}
         
