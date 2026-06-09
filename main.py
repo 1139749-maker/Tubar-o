@@ -3,6 +3,7 @@ import random
 from datetime import datetime
 from recursos.funcoes import inicializarBancoDeDados, limpar_tela, escreverDados, maior_pontuador
 
+##Luana esteve aqui!!
 limpar_tela()
 inicializarBancoDeDados()
 nome_maior, maior_pontos, dataJogada = maior_pontuador()
@@ -16,7 +17,7 @@ while True:
         print("Nome Inválido!")
 
 tamanho = (1000,700)
-pygame.display.set_caption("Nade Se Puder")
+pygame.display.set_caption("Nade Se Puder - Luiza")
 icone  = pygame.image.load("bases/icone.png")
 pygame.display.set_icon(icone)
 relogio = pygame.time.Clock()
