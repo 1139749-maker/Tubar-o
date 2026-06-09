@@ -1,6 +1,7 @@
 import pygame
 import random
 from datetime import datetime
+import pyttsx3
 import recursos.trabalho
 from recursos.funcoes import inicializarBancoDeDados, limpar_tela, escreverDados, maior_pontuador
 from recursos.trabalho import desenhar_concha
@@ -11,9 +12,15 @@ inicializarBancoDeDados()
 nome_maior, maior_pontos, dataJogada = maior_pontuador()
 pygame.init()
 
+def dar_boas_vindas(nome_jogador):
+    engine = pyttsx3.init()
+    engine.say(f"Bem-vindo, {nome_jogador}. Nade se puder!")
+    engine.runAndWait()
+
 while True:
     nome = input("Informe Nome Competidor:")
     if len(nome) > 0: 
+        dar_boas_vindas(nome)
         break
     else:
         print("Nome Inválido!")
@@ -45,6 +52,14 @@ fonteDescricao = pygame.font.SysFont("comicsans",22)
 concha_base = pygame.image.load("bases/concha.png").convert_alpha()
 tamanho_concha = 80.0 
 crescendo = True
+
+def salvar_log(nome_jogador, pontos_jogador):
+    agora = datetime.now()
+    data_formatada = agora.strftime("%d/%m/%Y")
+    hora_formatada = agora.strftime("%H:%M:%S")
+    
+    with open("log.dat", "a", encoding="utf-8") as arquivo_log:
+        arquivo_log.write(f"Nome: {nome_jogador} | Pontuação: {pontos_jogador} | Data: {data_formatada} | Hora: {hora_formatada}\n")
 
 def desenhar_concha(superficie_tela, concha_base_local=None):
     global tamanho_concha, crescendo
@@ -101,8 +116,7 @@ def jogar():
                 pausado = not pausado 
         
         if not pausado:
-            # 2. AQUI ESTÁ O NOVO SISTEMA DE CONTROLE!
-            # Ele lê as teclas o tempo todo, deixando o movimento super fluido e sem travar.
+    
             teclas = pygame.key.get_pressed()
             movimentoYPersona = 0 # Zera o movimento se nada estiver pressionado
             
@@ -149,7 +163,6 @@ def jogar():
             elif fundoMov2 <= -1000:
                 fundoMov2 = 1000
 
-        # O desenho da tela continua igual
         tela.fill(branco)
         tela.blit(fundo, (fundoMov1,0) )
         tela.blit(fundo, (fundoMov2,0) )
