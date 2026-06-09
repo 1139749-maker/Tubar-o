@@ -9,7 +9,7 @@ nome_maior, maior_pontos, dataJogada = maior_pontuador()
 pygame.init()
 
 while True:
-    nome = input("Informe o Nome do Competidor:")
+    nome = input("Informe Nome Competidor:")
     if len(nome) > 0: 
         break
     else:
