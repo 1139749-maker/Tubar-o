@@ -1,8 +1,6 @@
 Nome: Luísa Lima Migliorini
 RA: 1139749
 Descrição da Hitória do Jogo: O objetivo do jogo é fazer o nadador fugir do tubarão e assim, conseguir mais pontos. Há uma lenda antiga que a concha do mar carrega um tesouro. E um tubarão gigante, faminto e incrivelmente persistente decidiu que você tem cara de almoço. E a cada ponto ele fica mais rápido. Então, Nade se Poder!
-<<<<<<< HEAD
-Tecnologias Utilizadas: 
-=======
-Tecnologias Utilizadas: 
->>>>>>> 21a2e528b1f217d3e7b76d6bee8d1ce85c13a609
+Tecnologias Utilizadas: Python, Pygame, JSON, random, datetime, os, Git, Pip, VS Code.
+
+
