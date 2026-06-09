@@ -1,22 +1,25 @@
 import pygame
 import random
 from datetime import datetime
+import recursos.trabalho
 from recursos.funcoes import inicializarBancoDeDados, limpar_tela, escreverDados, maior_pontuador
+from recursos.trabalho import desenhar_concha
 
+##Luana esteve aqui!!
 limpar_tela()
 inicializarBancoDeDados()
 nome_maior, maior_pontos, dataJogada = maior_pontuador()
 pygame.init()
 
 while True:
-    nome = input("Informe o Nome do Competidor:")
+    nome = input("Informe Nome Competidor:")
     if len(nome) > 0: 
         break
     else:
         print("Nome Inválido!")
 
 tamanho = (1000,700)
-pygame.display.set_caption("Nade Se Puder")
+pygame.display.set_caption("Nade Se Puder - Luiza")
 icone  = pygame.image.load("bases/icone.png")
 pygame.display.set_icon(icone)
 relogio = pygame.time.Clock()
@@ -40,6 +43,30 @@ fonteTitulo = pygame.font.SysFont("comicsans",30)
 fonteDescricao = pygame.font.SysFont("comicsans",22)
 
 concha_base = pygame.image.load("bases/concha.png").convert_alpha()
+tamanho_concha = 80.0 
+crescendo = True
+
+def desenhar_concha(superficie_tela, concha_base_local=None):
+    global tamanho_concha, crescendo
+
+    if crescendo:
+        tamanho_concha += 0.2
+        if tamanho_concha >= 85.0:
+            crescendo = False
+    else:
+        tamanho_concha -= 0.2
+        if tamanho_concha <= 75.0:
+            crescendo = True
+
+    tamanho_inteiro = int(tamanho_concha)
+    concha_atual = pygame.transform.scale(concha_base, (tamanho_inteiro, tamanho_inteiro))
+
+    posicao_x = 1000 - tamanho_inteiro - 30
+    posicao_y = 700 - tamanho_inteiro - 30
+
+    superficie_tela.blit(concha_atual, (posicao_x, posicao_y))
+
+recursos.trabalho.desenhar_concha = desenhar_concha
 
 def jogar():
     fundoMov1 = 0
